@@ -1,3 +1,9 @@
+import { GenresFilters } from '@/features/search/components/GenresFilters';
+
 export const HomePage = () => {
-  return <div>Home Page</div>;
+  return (
+    <div>
+      <GenresFilters />
+    </div>
+  );
 };

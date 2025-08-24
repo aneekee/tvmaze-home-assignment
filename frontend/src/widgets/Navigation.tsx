@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Home } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { SearchbarContainer } from '@/features/search/components/SearchbarContainer';
+import { SearchbarContainer } from '@/features/search/components/searchbar/SearchbarContainer';
 
 export const Navigation = () => {
   return (
