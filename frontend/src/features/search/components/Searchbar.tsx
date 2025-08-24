@@ -1,0 +1,22 @@
+import type { ChangeEvent } from 'react';
+import { Search } from 'lucide-react';
+
+import { Input } from '@/components/ui/input';
+
+interface Props {
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export const Searchbar = ({ onChange }: Props) => {
+  return (
+    <div className="relative flex">
+      <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+      <Input
+        type="search"
+        placeholder="Search..."
+        className="pl-10 bg-background/50 border-border/50 focus:bg-background"
+        onChange={onChange}
+      />
+    </div>
+  );
+};
