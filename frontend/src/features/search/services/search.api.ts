@@ -8,6 +8,10 @@ import type {
 export const searchApi = createApi({
   reducerPath: 'searchApi',
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_BASE_URL }),
+  keepUnusedDataFor: 0,
+  refetchOnMountOrArgChange: true,
+  refetchOnFocus: true,
+  refetchOnReconnect: true,
   endpoints: (builder) => ({
     showsSearch: builder.query<ShowsSearchResponse, ShowsSearchParams>({
       query: ({ q }) => {
