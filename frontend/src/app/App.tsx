@@ -4,9 +4,12 @@ import { ShowDetailsPage } from '@/pages/ShowDetails.page';
 import { HomePage } from '@/pages/Home.page';
 import { NotFoundPage } from '@/pages/NotFound.page';
 
+import { Navigation } from '@/widgets/Navigation';
+
 export const App = () => {
   return (
     <BrowserRouter>
+      <Navigation />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/show-details/:id" element={<ShowDetailsPage />} />
