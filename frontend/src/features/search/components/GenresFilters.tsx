@@ -9,24 +9,18 @@ import {
   selectShowsSearchLoading,
 } from '../selectors/search.selectors';
 import { setSelectedGenres } from '../slice/genres.slice';
-import { selectSelectedGenres } from '../selectors/genres.selectors';
 
 export const GenresFilters = () => {
   const dispatch = useDispatch();
   const genres = useSelector(selectLastSearchGenres);
   const genresLoading = useSelector(selectShowsSearchLoading);
-  const selectedGenresFromStore = useSelector(selectSelectedGenres);
 
   const [selectedGenres, setSelectedGenresLocal] = useState<string[]>([]);
 
   useEffect(() => {
-    if (genres.length > 0 && selectedGenresFromStore.length === 0) {
-      setSelectedGenresLocal([...genres]);
-      dispatch(setSelectedGenres([...genres]));
-    } else if (selectedGenresFromStore.length > 0) {
-      setSelectedGenresLocal([...selectedGenresFromStore]);
-    }
-  }, [genres, selectedGenresFromStore, dispatch]);
+    setSelectedGenresLocal([...genres]);
+    dispatch(setSelectedGenres([...genres]));
+  }, [genres, dispatch]);
 
   const handleGenreChange = (genre: string, checked: boolean) => {
     let updatedGenres: string[];
