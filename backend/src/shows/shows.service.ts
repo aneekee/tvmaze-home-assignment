@@ -9,7 +9,9 @@ export class ShowsService {
 
   async searchShows(query: string): Promise<ShowSearchResultModel[]> {
     const response = await firstValueFrom(
-      this.httpService.get(`http://api.tvmaze.com/search/shows?q=${query}`),
+      this.httpService.get(
+        `${process.env.BASE_API_URL}/search/shows?q=${query}`,
+      ),
     );
 
     return response.data as ShowSearchResultModel[];
