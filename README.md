@@ -31,7 +31,7 @@ cp ./.env.example ./.env
 cd ../frontend
 cp ./.env.example ./.env
 
-# 3. Install depndencies in the frontend/ and backend/
+# 3. Install dependencies in the frontend/ and backend/
 cd ./backend
 npm i
 cd ../frontend
