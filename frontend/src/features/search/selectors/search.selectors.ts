@@ -28,6 +28,11 @@ export const selectLastSearchGenres = createSelector(
   (results) => results?.genres || [],
 );
 
+export const selectLastSearchShows = createSelector(
+  selectLastSearchResults,
+  (results) => results?.data?.map(({ show }) => show) || [],
+);
+
 export const selectShowsSearchLoading = createSelector(
   selectShowsSearchQueries,
   (showsSearchQueries) =>

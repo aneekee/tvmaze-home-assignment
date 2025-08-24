@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Checkbox } from '@/components/ui/checkbox';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -8,35 +8,43 @@ import {
   selectLastSearchGenres,
   selectShowsSearchLoading,
 } from '../selectors/search.selectors';
+import { setSelectedGenres } from '../slice/genres.slice';
+import { selectSelectedGenres } from '../selectors/genres.selectors';
 
 export const GenresFilters = () => {
+  const dispatch = useDispatch();
   const genres = useSelector(selectLastSearchGenres);
   const genresLoading = useSelector(selectShowsSearchLoading);
+  const selectedGenresFromStore = useSelector(selectSelectedGenres);
 
-  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const [selectedGenres, setSelectedGenresLocal] = useState<string[]>([]);
 
   useEffect(() => {
-    if (genres.length > 0) {
-      setSelectedGenres([...genres]);
+    if (genres.length > 0 && selectedGenresFromStore.length === 0) {
+      setSelectedGenresLocal([...genres]);
+      dispatch(setSelectedGenres([...genres]));
+    } else if (selectedGenresFromStore.length > 0) {
+      setSelectedGenresLocal([...selectedGenresFromStore]);
     }
-  }, [genres]);
+  }, [genres, selectedGenresFromStore, dispatch]);
 
   const handleGenreChange = (genre: string, checked: boolean) => {
+    let updatedGenres: string[];
+
     if (checked) {
-      setSelectedGenres((prev) => [...prev, genre]);
+      updatedGenres = [...selectedGenres, genre];
     } else {
-      setSelectedGenres((prev) => prev.filter((g) => g !== genre));
+      updatedGenres = selectedGenres.filter((g) => g !== genre);
     }
+
+    setSelectedGenresLocal(updatedGenres);
+    dispatch(setSelectedGenres(updatedGenres));
   };
 
   return (
     <div className="mt-15 w-full flex justify-center">
       <div className="w-11/12 flex gap-3 justify-center flex-wrap">
         {genresLoading ? <Skeleton className="h-10 w-full" /> : null}
-
-        {genres.length === 0 && !genresLoading ? (
-          <p className="text-sm text-muted-foreground">No genres found</p>
-        ) : null}
 
         {genres.map((genre) => (
           <div key={genre} className="flex items-center space-x-2">
