@@ -5,6 +5,9 @@ export type ShowsSearchParams = {
 };
 
 export type ShowsSearchResponse = {
-  score: number;
-  show: Show;
+  data: {
+    score: number;
+    show: Show;
+  }[];
+  genres: string[];
 };

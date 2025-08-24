@@ -5,9 +5,12 @@ interface Props {
 }
 
 export const useShowsSearch = ({ query }: Props) => {
-  const { data, isLoading, isFetching, error } = useShowsSearchQuery({
-    q: query,
-  });
+  const { data, isLoading, isFetching, error } = useShowsSearchQuery(
+    {
+      q: query,
+    },
+    { skip: query.length < 2 },
+  );
 
   return {
     data,

@@ -180,3 +180,11 @@ export class ShowSearchResultModel {
   @ApiProperty({ type: ShowModel })
   show: ShowModel;
 }
+
+export class ShowsSearchResponseModel {
+  @ApiProperty({ type: [ShowSearchResultModel] })
+  data: ShowSearchResultModel[];
+
+  @ApiProperty({ type: [String] })
+  genres: string[];
+}
