@@ -7,7 +7,7 @@
 git clone https://github.com/aneekee/tvmaze-home-assignment.git
 cd tvmaze-home-assignment
 
-# 2. Run with Docker Compose (Production build)
+# 2. Run with Docker Compose
 docker-compose up -d --build
 
 ```
