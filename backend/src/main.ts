@@ -9,7 +9,10 @@ async function bootstrap() {
 
   // CORS
   app.enableCors({
-    origin: process.env.FRONTEND_BASE_URL,
+    origin: [
+      process.env.FRONTEND_BASE_URL,
+      process.env.DOCKER_FRONTEND_BASE_URL,
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true,
   });

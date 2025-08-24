@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: tvmaze-backend
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - BASE_API_URL=http://api.tvmaze.com
+      - FRONTEND_BASE_URL=http://localhost:5173
+      - DOCKER_FRONTEND_BASE_URL=http://localhost
+    networks:
+      - tvmaze-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: tvmaze-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_BASE_URL=http://localhost:4000
+    networks:
+      - tvmaze-network
+    restart: unless-stopped
+
+networks:
+  tvmaze-network:
+    driver: bridge

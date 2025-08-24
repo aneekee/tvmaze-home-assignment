@@ -1,4 +1,21 @@
-## How to run
+## How to Run
+
+### Option 1: Using Docker (Recommended)
+
+```bash
+# 1. Pull the project
+git clone https://github.com/aneekee/tvmaze-home-assignment.git
+cd tvmaze-home-assignment
+
+# 2. Run with Docker Compose (Production build)
+docker-compose up -d --build
+
+```
+
+- Frontend is available at: http://localhost:80/
+- Backend Swagger is available at: http://localhost:4000/api
+
+### Option 2: Manual Setup
 
 ```bash
 # 1. Pull the project
@@ -25,9 +42,7 @@ cd ./backend
 npm run start:dev
 cd ../frontend
 npm run dev
-
 ```
 
-Frontend is on the http://localhost:5173/
-
-Backend swagger is on the http://localhost:4000/api
+- Frontend is available at: http://localhost:5173/
+- Backend Swagger is available at: http://localhost:4000/api
