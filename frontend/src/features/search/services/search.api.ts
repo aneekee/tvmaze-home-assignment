@@ -4,6 +4,7 @@ import type {
   ShowsSearchParams,
   ShowsSearchResponse,
 } from '../types/search.types';
+import type { Show } from '@/features/shows/types/shows.types';
 
 export const searchApi = createApi({
   reducerPath: 'searchApi',
@@ -22,7 +23,15 @@ export const searchApi = createApi({
         };
       },
     }),
+    getShowById: builder.query<Show, string>({
+      query: (id) => {
+        return {
+          url: `/shows/${id}`,
+          method: 'GET',
+        };
+      },
+    }),
   }),
 });
 
-export const { useShowsSearchQuery } = searchApi;
+export const { useShowsSearchQuery, useGetShowByIdQuery } = searchApi;

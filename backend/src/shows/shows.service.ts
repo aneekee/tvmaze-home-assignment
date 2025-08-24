@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
-import { ShowSearchResultModel } from './models/show.model';
+import { ShowModel, ShowSearchResultModel } from './models/show.model';
 
 @Injectable()
 export class ShowsService {
@@ -16,6 +16,23 @@ export class ShowsService {
 
     const genres = this.getShowsSearchGenres(response.data);
     return { data: response.data, genres };
+  }
+
+  async getShowById(id: string) {
+    try {
+      const response = await firstValueFrom(
+        this.httpService.get<ShowModel>(
+          `${process.env.BASE_API_URL}/shows/${id}`,
+        ),
+      );
+      return response.data;
+    } catch (error: any) {
+      if (error.response?.status === 404) {
+        throw new NotFoundException(`Show with ID ${id} not found`);
+      }
+
+      throw error;
+    }
   }
 
   getShowsSearchGenres(data: ShowSearchResultModel[]) {
