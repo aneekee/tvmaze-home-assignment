@@ -1,3 +1,14 @@
+import { Button } from './components/ui/button';
+
 export const App = () => {
-  return <div className="text-red-400">Hello World</div>;
+  const onClick = () => {
+    console.log('Button clicked');
+  };
+
+  return (
+    <div className="w-full flex justify-between">
+      <h1>Hello World</h1>
+      <Button onClick={onClick}>Click me</Button>
+    </div>
+  );
 };
