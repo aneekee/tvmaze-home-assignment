@@ -1,6 +1,6 @@
 ## How to Run
 
-### Option 1: Using Docker (Recommended)
+### Option 1: Using Docker
 
 ```bash
 # 1. Pull the project
